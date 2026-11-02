@@ -1,35 +1,88 @@
-# Simple Recommendation System
+# Movie Recommendation System
 
-This project implements a basic recommendation system using two different techniques:
+A simple Python recommendation system that suggests movies using collaborative
+filtering and content-based filtering.
 
-1.  **Collaborative Filtering (User-Based):** Suggests movies to a user by finding similar users and recommending movies they liked but the target user hasn't seen yet. It uses cosine similarity to calculate user similarities and weighted averages for rating predictions.
-2.  **Content-Based Filtering:** Suggests movies similar to a specific movie based on shared genres. It uses `CountVectorizer` and cosine similarity on movie genres.
+## Features
 
-## Project Structure
+- **User-based collaborative filtering:** Finds users with similar rating
+  patterns and recommends movies the target user has not rated. Similarity is
+  measured with cosine similarity, and ratings from similar users are combined
+  into predicted scores.
+- **Content-based filtering:** Recommends movies with genres similar to a
+  selected movie. Genre overlap is measured with cosine similarity.
+- Handles missing or invalid ratings and matches movie titles without
+  case-sensitivity.
 
-- `movies.csv`: Contains movie IDs, titles, and genres.
-- `ratings.csv`: Contains user ratings for various movies.
-- `recommender.py`: The main Python script containing the `RecommendationSystem` class and example usage.
+## Project files
 
-## How to Run
+- `recommender.py` — recommendation logic and runnable example.
+- `movies.csv` — movie IDs, titles, and pipe-separated genres.
+- `ratings.csv` — user IDs, movie IDs, and ratings.
 
-1.  Ensure you have the required libraries installed:
-    ```bash
-    pip install pandas numpy scikit-learn
-    ```
-2.  Run the script:
-    ```bash
-    python recommender.py
-    ```
+The CSV files must include these columns:
 
-## Example Usage
+| File | Required columns |
+| --- | --- |
+| `movies.csv` | `movie_id`, `title`, `genres` |
+| `ratings.csv` | `user_id`, `movie_id`, `rating` |
+
+## Requirements
+
+- Python 3
+- pandas
+- scikit-learn
+
+Install the dependencies from a terminal:
+
+```powershell
+python -m pip install pandas scikit-learn
+```
+
+## Run
+
+From the `recommendation_system` folder:
+
+```powershell
+python .\recommender.py
+```
+
+Or, from the parent `CODSOFT_TASKS3` folder:
+
+```powershell
+python .\recommendation_system\recommender.py
+```
+
+The script loads the CSV files relative to its own location and prints
+collaborative recommendations for User 1 and content-based recommendations
+for *Inception*.
+
+If `python` is not the interpreter with the dependencies installed, run the
+script with that interpreter's full path instead.
+
+## Use the recommendation methods
 
 ```python
-recommender = RecommendationSystem('movies.csv', 'ratings.csv')
+from recommender import RecommendationSystem
 
-# Get collaborative recommendations for User 1
-user_recs = recommender.get_user_recommendations(user_id=1)
+recommender = RecommendationSystem("movies.csv", "ratings.csv")
 
-# Get content-based recommendations for 'Inception'
-content_recs = recommender.get_content_recommendations('Inception')
+user_recommendations = recommender.get_user_recommendations(
+    user_id=1,
+    num_recommendations=5,
+)
+
+movie_recommendations = recommender.get_content_recommendations(
+    movie_title="Inception",
+    num_recommendations=5,
+)
+
+print(user_recommendations)
+print(movie_recommendations)
 ```
+
+Each method returns a list of dictionaries. Collaborative recommendations
+include `movie_id`, `title`, and `predicted_rating`; content-based
+recommendations include `movie_id`, `title`, `genres`, and `similarity`.
+An empty list is returned if no recommendations are available or the requested
+user/movie is not found.
