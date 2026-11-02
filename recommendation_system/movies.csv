@@ -1,0 +1,21 @@
+movie_id,title,genres
+1,The Shawshank Redemption,Drama
+2,The Godfather,Crime|Drama
+3,The Dark Knight,Action|Crime|Drama
+4,Pulp Fiction,Crime|Drama
+5,Schindler's List,Drama|History
+6,The Lord of the Rings: The Return of the King,Action|Adventure|Drama
+7,Fight Club,Drama
+8,Inception,Action|Adventure|Sci-Fi
+9,The Matrix,Action|Sci-Fi
+10,Forrest Gump,Drama|Romance
+11,Star Wars: Episode IV - A New Hope,Action|Adventure|Sci-Fi
+12,Interstellar,Adventure|Drama|Sci-Fi
+13,The Silence of the Lambs,Crime|Horror|Thriller
+14,Se7en,Crime|Drama|Mystery|Thriller
+15,The Usual Suspects,Crime|Mystery|Thriller
+16,Leon: The Professional,Action|Crime|Drama|Thriller
+17,The Green Mile,Crime|Drama|Fantasy|Mystery
+18,Saving Private Ryan,Drama|War
+19,Life Is Beautiful,Comedy|Drama|Romance
+20,The Pianist,Drama|War
